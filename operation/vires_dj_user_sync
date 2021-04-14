@@ -1,0 +1,9 @@
+/var/log/vires/user_sync/dj_syncing_users.log {
+    su schillerc vires
+    copytruncate
+    weekly
+    minsize 1M
+    rotate 560
+    compress
+    missingok
+}

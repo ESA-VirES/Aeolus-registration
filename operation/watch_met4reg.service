@@ -1,0 +1,20 @@
+
+[Unit]
+Description=Watch Agent for incoming (by FTP) aeolus-MET-data (watch_met4reg.py)
+Wants=basic.target
+After= basic.target
+After= local-fs.target network.target proc-fs-nfsd.mount rpcbind.service nfs-mountd.service
+After= nfs-idmapd.service rpc-statd.service
+After= puppetmaster.service
+
+[Service]
+Type=forking
+ExecStart=/usr/local/vires/ftp_mirror_and_register/run_watch_met4reg.sh
+PIDFile=/usr/local/vires/ftp_mirror_and_register/watch_met4reg.pid
+KillMode=process
+Restart=on-failure
+User=vires
+Group=vires
+
+[Install]
+WantedBy=multi-user.target
